@@ -1,4 +1,3 @@
-
 import boto3
 import os
 from datetime import datetime
@@ -22,7 +21,7 @@ def connect_s3():
     return s3_client
 
 
-class CSVDataLakeConf:
+class InsertDataToDataLake:
     """This class provides basic functionalities to add data to s3 of csv objects.
     It Creates data lake in the structure of
     'module/YYYY/MM/DD/folder_name/file_name_timestamp.csv'
@@ -45,7 +44,7 @@ class CSVDataLakeConf:
 
     def create_file_path(self):
         date_str = self.now.strftime(format='%Y/%m/%d')
-        file_structure = 'self.module/{}/{}'.format(date_str, self.folder_name)
+        file_structure = '{}/{}/{}'.format(self.module, date_str, self.folder_name)
         return file_structure
 
     def create_file_name(self):
@@ -55,14 +54,14 @@ class CSVDataLakeConf:
         )
 
     def generate_file(self):
-        return self.create_file_path() + self.create_file_name()
+        return '{}{}.{}'.format(self.create_file_path(), self.create_file_name(), self.file_type)
 
     def push_data(self):
         s3_client = connect_s3()
-        resp = s3_client.put_object(
+        _ = s3_client.put_object(
             Bucket=BUCKET,
             Key=self.generate_file(),
             Body=self.file_buffer
         )
-        return resp
+
 
