@@ -1,10 +1,10 @@
 import duckdb
 duckdb.sql('select 24').show()
 
-# with duckdb.connect('test.db') as con:
-#     con.sql("CREATE TABLE test (i INTEGER)")
-#     con.sql("INSERT INTO test VALUES (42)")
-#     con.table("test").show()
+with duckdb.connect('test.db') as con:
+    con.sql("CREATE TABLE test (i INTEGER)")
+    con.sql("INSERT INTO test VALUES (42)")
+    con.table("test").show()
 
 
 new_conn = duckdb.connect('test.db')

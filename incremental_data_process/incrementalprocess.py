@@ -1,7 +1,13 @@
 from pyspark.sql import SparkSession
+from pathlib import Path
+import os
 
-spark = SparkSession.builder.appName('incrementalApp').master('local[*]').getOrCreate()
-spark.stop()
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+print('BASE_DIR: ', BASE_DIR)
+#
+# spark = SparkSession.builder.appName('incrementalApp').master('local[*]').getOrCreate()
+# spark.stop()
 
 # Create a function that fetches timestamp from a file
 # create a table using duck db and insert fake data in regular basis
