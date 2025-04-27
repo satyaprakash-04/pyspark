@@ -4,9 +4,8 @@ from random import randrange
 from datetime import datetime
 
 
-def generate_timestamp():
-    now = datetime.now()
-    return datetime.strftime(now, '%Y-%m-%d %H:%M:%S.%f')
+def generate_timestamp(timestamp):
+    return datetime.strftime(timestamp, '%Y-%m-%d %H:%M:%S.%f')
 
 
 class InsertQueryGenerator:
@@ -48,7 +47,7 @@ if __name__ == '__main__':
     main_data = []
     for _ in range(row_length):
         lis_data = [fake.name(), fake.address().replace('\n', ', '), fake.phone_number(), fake.email(), randrange(10000, 100000),
-                    generate_timestamp()]
+                    generate_timestamp(timestamp=datetime.now())]
         main_data.append(lis_data)
     query_gen = InsertQueryGenerator(
         table_name='employees',
