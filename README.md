@@ -1,2 +1,3 @@
 # pyspark
-This contains pyspark jupyter notebook files and its dependancies
+This contains pyspark jupyter notebook files and its dependancies.
+
